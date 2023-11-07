@@ -1,0 +1,11 @@
+.wrapper {
+  padding: 30px 80px;
+  margin: 70px;
+  background: #fff;
+  border-radius: 50px;
+  box-shadow: -15px 10px 40px #c8c8c8;
+}
+
+h1 {
+  margin-top: 10px;
+}
