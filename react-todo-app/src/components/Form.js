@@ -1,6 +1,8 @@
 import React from "react";
 
-const Form = ({ value, setValue, setTodoData, handleSubmit, inputElem }) => {
+const Form = ({ value, setValue, handleSubmit, inputElem }) => {
+  console.log("Form Component");
+
   const handleChange = (e) => {
     setValue(e.target.value);
   };
