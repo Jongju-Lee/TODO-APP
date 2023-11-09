@@ -3,20 +3,25 @@ import "./App.css";
 import Lists from "./components/Lists";
 import Form from "./components/Form";
 
+const initialTodoData = localStorage.getItem("todoData")
+  ? JSON.parse(localStorage.getItem("todoData"))
+  : [];
+
 const App = () => {
-  console.log("App Component");
   const [value, setValue] = useState("");
-  const [todoData, setTodoData] = useState([]);
+  const [todoData, setTodoData] = useState(initialTodoData);
   const inputElem = useRef();
 
   const handleRemoveClick = () => {
     setTodoData([]);
+    localStorage.setItem("todoData", JSON.stringify([]));
   };
 
   const handleClick = useCallback(
     (id) => {
       const newTodoList = todoData.filter((it) => it.id !== id);
       setTodoData(newTodoList);
+      localStorage.setItem("todoData", JSON.stringify(newTodoList));
     },
     [todoData]
   );
@@ -29,6 +34,7 @@ const App = () => {
       completed: false,
     };
     setTodoData((prev) => [...prev, newTodo]);
+    localStorage.setItem("todoData", JSON.stringify([...todoData, newTodo]));
     setValue("");
     inputElem.current.focus();
   };

@@ -3,10 +3,7 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import List from "./List";
 
 const Lists = React.memo(({ todoData, setTodoData, handleClick }) => {
-  console.log("Lists Component");
-
   const handleEnd = (result) => {
-    console.log(result);
     // result 매개변수에는 source 항목 및 대상 위치와 같은 드래그 이벤트에 대한 정보가 포함됩니다.
     if (!result.destination) return;
     // 목적지가 없으면(이벤트 취소) 이 함수를 종료 합니다.
@@ -19,6 +16,7 @@ const Lists = React.memo(({ todoData, setTodoData, handleClick }) => {
     newTodoData.splice(result.destination.index, 0, reorderedItem);
     // reorderedItem을 복사한 state에 한번 더 splice로 목적지에 삽입해 줍니다.
     setTodoData(newTodoData);
+    localStorage.setItem("todoData", JSON.stringify(newTodoData));
     // setTodoData()는 state의 setter함수 이름입니다.
     // setter함수 안에 새로 수정한 state를 넣어서 state를 변경합니다.
   };
